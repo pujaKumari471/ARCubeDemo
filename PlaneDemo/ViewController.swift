@@ -13,6 +13,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     @IBOutlet weak var sceneView: ARSCNView!
     @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var removeButton: UIButton!
     
     var object: SCNNode = SCNNode()
     var currentAngleY: Float = 0.0
@@ -21,11 +22,11 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.removeButton.isHidden = true
+        self.removeButton.isEnabled = false
         addTapGestureToSceneView()
         addPinchGestureToSceneView()
         addPanGestureToSceneView()
-        
         //configureLighting()
     }
     
@@ -140,6 +141,13 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         panGesture.delegate = self
         sceneView.addGestureRecognizer(panGesture)
     }
+    
+    //Remove Cube
+    @IBAction func removeButtonClicked(_ sender: Any) {
+        sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+            node.removeFromParentNode()
+        }
+    }
 }
 
 
@@ -159,7 +167,7 @@ extension UIColor {
 
 extension ViewController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        // 1
+        
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
         
         DispatchQueue.main.async {
@@ -172,9 +180,10 @@ extension ViewController: ARSCNViewDelegate {
         let z = CGFloat(planeAnchor.center.z)
         addCube().position = SCNVector3(x,y,z)
         addCube().eulerAngles.x = -.pi / 2
-        
-        // 6
+    
         node.addChildNode(addCube())
+        self.removeButton.isHidden = false
+        self.removeButton.isEnabled = true
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {

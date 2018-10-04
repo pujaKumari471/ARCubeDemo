@@ -21,19 +21,32 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oCV-U0-jGe">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </arscnView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initializing AR Sesssion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2R-FO-BlB">
-                                <rect key="frame" x="16" y="48" width="343" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Initializing AR Sesssion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2R-FO-BlB">
+                                <rect key="frame" x="16" y="48" width="282" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.9152754353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axb-zW-h4F">
+                                <rect key="frame" x="258" y="43" width="101" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="101" id="Bur-0E-jFB"/>
+                                </constraints>
+                                <state key="normal" title="Remove">
+                                    <color key="titleColor" red="0.28840373632745808" green="0.16899928491912541" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="removeButtonClicked:" destination="CH4-bG-lEF" eventType="touchUpInside" id="clU-mm-zN3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0tx-Ic-A8k" firstAttribute="trailing" secondItem="oCV-U0-jGe" secondAttribute="trailing" id="2jW-RL-T5y"/>
-                            <constraint firstItem="0tx-Ic-A8k" firstAttribute="trailing" secondItem="X2R-FO-BlB" secondAttribute="trailing" constant="16" id="6m7-LO-Vfl"/>
                             <constraint firstItem="X2R-FO-BlB" firstAttribute="leading" secondItem="0tx-Ic-A8k" secondAttribute="leading" constant="16" id="BPO-6L-OYg"/>
+                            <constraint firstItem="axb-zW-h4F" firstAttribute="top" secondItem="0tx-Ic-A8k" secondAttribute="top" constant="23" id="BqI-Le-JS1"/>
                             <constraint firstItem="0tx-Ic-A8k" firstAttribute="bottom" secondItem="oCV-U0-jGe" secondAttribute="bottom" id="HQ6-bJ-bbb"/>
+                            <constraint firstItem="0tx-Ic-A8k" firstAttribute="trailing" secondItem="axb-zW-h4F" secondAttribute="trailing" constant="16" id="R6X-QC-BzF"/>
                             <constraint firstItem="X2R-FO-BlB" firstAttribute="top" secondItem="0tx-Ic-A8k" secondAttribute="top" constant="28" id="ZDy-pR-CXp"/>
                             <constraint firstItem="oCV-U0-jGe" firstAttribute="top" secondItem="TbV-zv-DL4" secondAttribute="top" id="g7e-ux-5PV"/>
                             <constraint firstItem="oCV-U0-jGe" firstAttribute="leading" secondItem="0tx-Ic-A8k" secondAttribute="leading" id="h84-Rp-wyg"/>
@@ -43,12 +56,13 @@
                     </view>
                     <connections>
                         <outlet property="infoLabel" destination="X2R-FO-BlB" id="Ub3-GG-wKT"/>
+                        <outlet property="removeButton" destination="axb-zW-h4F" id="5xF-1A-C1K"/>
                         <outlet property="sceneView" destination="oCV-U0-jGe" id="VEt-iI-HKe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mWR-C7-R5H" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="199.19999999999999" y="-149.77511244377811"/>
+            <point key="canvasLocation" x="261.60000000000002" y="-119.1904047976012"/>
         </scene>
     </scenes>
 </document>
