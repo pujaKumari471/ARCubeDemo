@@ -1,27 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A278a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.15" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CH4-bG-lEF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.9"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tXr-a1-R10">
+        <scene sceneID="ZiG-0f-vRz">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <arscnView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="BrB-h1-WRS">
+                <viewController id="CH4-bG-lEF" customClass="ViewController" customModule="Solar_System_Final" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TbV-zv-DL4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </arscnView>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oCV-U0-jGe">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </arscnView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initializing AR Sesssion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2R-FO-BlB">
+                                <rect key="frame" x="16" y="48" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.9152754353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0tx-Ic-A8k" firstAttribute="trailing" secondItem="oCV-U0-jGe" secondAttribute="trailing" id="2jW-RL-T5y"/>
+                            <constraint firstItem="0tx-Ic-A8k" firstAttribute="trailing" secondItem="X2R-FO-BlB" secondAttribute="trailing" constant="16" id="6m7-LO-Vfl"/>
+                            <constraint firstItem="X2R-FO-BlB" firstAttribute="leading" secondItem="0tx-Ic-A8k" secondAttribute="leading" constant="16" id="BPO-6L-OYg"/>
+                            <constraint firstItem="0tx-Ic-A8k" firstAttribute="bottom" secondItem="oCV-U0-jGe" secondAttribute="bottom" id="HQ6-bJ-bbb"/>
+                            <constraint firstItem="X2R-FO-BlB" firstAttribute="top" secondItem="0tx-Ic-A8k" secondAttribute="top" constant="28" id="ZDy-pR-CXp"/>
+                            <constraint firstItem="oCV-U0-jGe" firstAttribute="top" secondItem="TbV-zv-DL4" secondAttribute="top" id="g7e-ux-5PV"/>
+                            <constraint firstItem="oCV-U0-jGe" firstAttribute="leading" secondItem="0tx-Ic-A8k" secondAttribute="leading" id="h84-Rp-wyg"/>
+                            <constraint firstItem="X2R-FO-BlB" firstAttribute="top" secondItem="0tx-Ic-A8k" secondAttribute="top" constant="28" id="iLm-V1-gpM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0tx-Ic-A8k"/>
+                    </view>
                     <connections>
-                        <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
+                        <outlet property="infoLabel" destination="X2R-FO-BlB" id="Ub3-GG-wKT"/>
+                        <outlet property="sceneView" destination="oCV-U0-jGe" id="VEt-iI-HKe"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mWR-C7-R5H" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="199.19999999999999" y="-149.77511244377811"/>
         </scene>
     </scenes>
 </document>
