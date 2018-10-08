@@ -14,20 +14,57 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     @IBOutlet weak var sceneView: ARSCNView!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var removeButton: UIButton!
+    @IBOutlet weak var startButton: UIButton!
+    
+    @IBOutlet weak var mainStackView: UIStackView!
+    @IBOutlet weak var lightEstimationStackView: UIStackView!
+    
+    @IBOutlet weak var ambientIntensityLabel: UILabel!
+    @IBOutlet weak var ambientColorTemperatureLabel: UILabel!
+    
+    @IBOutlet weak var ambientIntensitySlider: UISlider!
+    @IBOutlet weak var ambientColorTemperatureSlider: UISlider!
+    
+    @IBOutlet weak var lightEstimationSwitch: UISwitch!
     
     var object: SCNNode = SCNNode()
     var currentAngleY: Float = 0.0
     var currentAngleX: Float = 0.0
+    var flag:Bool = false
+    var lightNodes = [SCNNode]()
+    var zoomFactor: Float = 1.0
+  
     
+    fileprivate lazy var spotLight: SCNLight = {
+        let spotLight = SCNLight()
+        spotLight.type = .spot
+        spotLight.spotInnerAngle = 0
+        spotLight.spotOuterAngle = 45
+        spotLight.castsShadow = true
+        return spotLight
+    }()
+    
+    
+    fileprivate lazy var floor: SCNFloor = {
+        let floor = SCNFloor()
+        floor.reflectivity = 0.3
+        return floor
+        
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.removeButton.isHidden = true
         self.removeButton.isEnabled = false
+        self.startButton.isHidden = true
+        self.startButton.isEnabled = false
+        self.mainStackView.isHidden = true
+        self.infoLabel.isHidden = false
         addTapGestureToSceneView()
         addPinchGestureToSceneView()
         addPanGestureToSceneView()
-        //configureLighting()
+        configureLighting()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,7 +79,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     func setUpSceneView() {
         let configuration = ARWorldTrackingConfiguration()
-        configuration.planeDetection = .horizontal
+        configuration.planeDetection = [.horizontal, .vertical]
         
         sceneView.session.run(configuration)
         
@@ -51,9 +88,30 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     }
     
     func configureLighting() {
-        sceneView.autoenablesDefaultLighting = true
-        sceneView.automaticallyUpdatesLighting = true
+        sceneView.autoenablesDefaultLighting = false
+        sceneView.automaticallyUpdatesLighting = false
     }
+    
+    
+    
+    func getLightNode() -> SCNNode {
+        let light = SCNLight()
+        light.type = .omni
+        light.intensity = 0
+        light.temperature = 0
+        
+        let lightNode = SCNNode()
+        lightNode.light = light
+        lightNode.position = SCNVector3(0,1,0)
+        return lightNode
+    }
+    
+    func  addLightNodeTo(_ node: SCNNode) {
+        let lightNode = getLightNode()
+        node.addChildNode(lightNode)
+        lightNodes.append(lightNode)
+    }
+
     
     @objc func addCubeToSceneView(withGestureRecognizer recognizer: UIGestureRecognizer) {
         let tapLocation = recognizer.location(in: sceneView)
@@ -65,8 +123,10 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         let y = translation.y
         let z = translation.z
         
-        addCube().position = SCNVector3(x,y,z)
-        sceneView.scene.rootNode.addChildNode(addCube())
+        let cube:SCNNode = addCube()
+        
+        cube.position = SCNVector3(x,y,z)
+        sceneView.scene.rootNode.addChildNode(cube)
     }
     
     
@@ -87,8 +147,9 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         }
         
         
-        let sceneObject = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.0)
+        let sceneObject = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0.015)
         sceneObject.materials = sideMaterials
+        
      
         // add object to the geometry of node ,node has properties like geometry,position etc.
         object.geometry =  sceneObject
@@ -108,8 +169,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     
     @objc func didPinch(_ gesture: UIPinchGestureRecognizer) {
-        var originalScale = object.scale
-        
+          var originalScale = object.scale
+
         switch gesture.state {
         case .began:
             originalScale = object.scale
@@ -133,7 +194,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
             gesture.scale = CGFloat((object.scale.x))
         default:
             gesture.scale = 1.0
-          
+
         }
     }
     func addPanGestureToSceneView() {
@@ -147,7 +208,62 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
             node.removeFromParentNode()
         }
+        self.flag = false
     }
+    @IBAction func startButtonClicked(_ sender: Any) {
+       
+    }
+    
+    @IBAction func ambientIntensitySliderValueDidChange(_ sender: UISlider) {
+        DispatchQueue.main.async {
+            let ambientIntensity = sender.value
+            self.ambientIntensityLabel.text = "Ambient Intensity: \(ambientIntensity)"
+            
+            guard !self.lightEstimationSwitch.isOn else { return }
+            for lightNode in self.lightNodes {
+                guard let light = lightNode.light else { continue }
+                light.intensity = CGFloat(ambientIntensity)
+            }
+        }
+        
+    }
+    
+    @IBAction func ambientColorTemperatureSliderValueDidChange(_ sender: UISlider) {
+        DispatchQueue.main.async {
+            let ambientColorTemperature = self.ambientColorTemperatureSlider.value
+            self.ambientColorTemperatureLabel.text = "Ambient Color Temperature: \(ambientColorTemperature)"
+            
+            guard !self.lightEstimationSwitch.isOn else { return }
+            for lightNode in self.lightNodes {
+                guard let light = lightNode.light else { continue }
+                light.temperature = CGFloat(ambientColorTemperature)
+            }
+        }
+        
+    }
+    
+    @IBAction func lightEstimationSwitchValueDidChange(_ sender: UISwitch) {
+        ambientIntensitySliderValueDidChange(ambientIntensitySlider)
+        ambientColorTemperatureSliderValueDidChange(ambientColorTemperatureSlider)
+    }
+    
+    func updateLightNodesLightEstimation() {
+    DispatchQueue.main.async {
+    guard self.lightEstimationSwitch.isOn,
+    let lightEstimate = self.sceneView.session.currentFrame?.lightEstimate
+    else { return }
+    
+    let ambientIntensity = lightEstimate.ambientIntensity
+    let ambientColorTemperature = lightEstimate.ambientColorTemperature
+    
+    for lightNode in self.lightNodes {
+    guard let light = lightNode.light else { continue }
+    light.intensity = ambientIntensity
+    light.temperature = ambientColorTemperature
+    }
+    }
+    }
+
 }
 
 
@@ -174,21 +290,34 @@ extension ViewController: ARSCNViewDelegate {
             self.infoLabel.text = "Surface Detected."
         }
         
-
+        //node.geometry = floor
+        
         let x = CGFloat(planeAnchor.center.x)
         let y = CGFloat(planeAnchor.center.y)
         let z = CGFloat(planeAnchor.center.z)
-        addCube().position = SCNVector3(x,y,z)
-        addCube().eulerAngles.x = -.pi / 2
-    
-        node.addChildNode(addCube())
+        
+        if self.flag == false  {
+        let cube:SCNNode = addCube()
+        cube.position = SCNVector3(x,y,z)
+        cube.eulerAngles.x = -.pi / 2
+        //addLightNodeTo(cube)
+        node.addChildNode(cube)
+        self.flag = true
+        }
+        
+        DispatchQueue.main.async {
         self.removeButton.isHidden = false
         self.removeButton.isEnabled = true
+        }
+       
+      
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
- 
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        updateLightNodesLightEstimation()
+      
     }
+  
     
     func sessionWasInterrupted(_ session: ARSession) {
         infoLabel.text = "Session was interrupted"
@@ -214,7 +343,7 @@ extension ViewController: ARSCNViewDelegate {
         // help us inform the user when the app is ready
         switch camera.trackingState {
         case .normal :
-            infoLabel.text = "Move the device to detect horizontal surfaces."
+            infoLabel.text = "Move the device to detect surfaces."
             
         case .notAvailable:
             infoLabel.text = "Tracking not available."
@@ -223,7 +352,7 @@ extension ViewController: ARSCNViewDelegate {
             infoLabel.text = "Tracking limited - Move the device more slowly."
             
         case .limited(.insufficientFeatures):
-            infoLabel.text = "Tracking limited - Point the device at an area with visible surface detail."
+            infoLabel.text = "Point the device at an area with visible surface detail."
             
         case .limited(.initializing):
             infoLabel.text = "Initializing AR session."
