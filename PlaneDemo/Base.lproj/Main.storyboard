@@ -27,63 +27,6 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.9152754353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="9gA-Fd-QHH">
-                                <rect key="frame" x="0.0" y="414" width="419" height="214"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="rBM-Bu-Td4">
-                                        <rect key="frame" x="0.0" y="0.0" width="419" height="62"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Light Estimation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tc4-sf-AUj">
-                                                <rect key="frame" x="0.0" y="0.0" width="419" height="31"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0Hb-fl-dF4">
-                                                <rect key="frame" x="0.0" y="31" width="421" height="31"/>
-                                                <connections>
-                                                    <action selector="lightEstimationSwitchValueDidChange:" destination="CH4-bG-lEF" eventType="valueChanged" id="MAs-dv-u3y"/>
-                                                </connections>
-                                            </switch>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="TsR-XN-51j">
-                                        <rect key="frame" x="0.0" y="78" width="419" height="60"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ambient Intensity:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExW-AC-Ywu">
-                                                <rect key="frame" x="0.0" y="0.0" width="419" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="10000" translatesAutoresizingMaskIntoConstraints="NO" id="9Ex-OA-3Ne">
-                                                <rect key="frame" x="-2" y="30" width="423" height="31"/>
-                                                <connections>
-                                                    <action selector="ambientIntensitySliderValueDidChange:" destination="CH4-bG-lEF" eventType="valueChanged" id="zOW-xP-fQT"/>
-                                                </connections>
-                                            </slider>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Ren-uv-yms">
-                                        <rect key="frame" x="0.0" y="154" width="419" height="60"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ambient Color Temperature:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xh1-o8-bsQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="419" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="10000" translatesAutoresizingMaskIntoConstraints="NO" id="RnS-U7-0gT">
-                                                <rect key="frame" x="-2" y="30" width="423" height="31"/>
-                                                <connections>
-                                                    <action selector="ambientColorTemperatureSliderValueDidChange:" destination="CH4-bG-lEF" eventType="valueChanged" id="yZG-Rg-ZcP"/>
-                                                </connections>
-                                            </slider>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="alo-z9-ERD">
                                 <rect key="frame" x="16" y="20" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
@@ -120,14 +63,7 @@
                         <viewLayoutGuide key="safeArea" id="0tx-Ic-A8k"/>
                     </view>
                     <connections>
-                        <outlet property="ambientColorTemperatureLabel" destination="xh1-o8-bsQ" id="gEJ-IA-oKq"/>
-                        <outlet property="ambientColorTemperatureSlider" destination="RnS-U7-0gT" id="066-8R-EuY"/>
-                        <outlet property="ambientIntensityLabel" destination="ExW-AC-Ywu" id="hGE-FW-Z6e"/>
-                        <outlet property="ambientIntensitySlider" destination="9Ex-OA-3Ne" id="dDf-iq-cRG"/>
                         <outlet property="infoLabel" destination="X2R-FO-BlB" id="Ub3-GG-wKT"/>
-                        <outlet property="lightEstimationStackView" destination="rBM-Bu-Td4" id="rqL-fo-pJb"/>
-                        <outlet property="lightEstimationSwitch" destination="0Hb-fl-dF4" id="Uhk-GD-q1J"/>
-                        <outlet property="mainStackView" destination="9gA-Fd-QHH" id="Wym-4X-cWC"/>
                         <outlet property="removeButton" destination="axb-zW-h4F" id="5xF-1A-C1K"/>
                         <outlet property="sceneView" destination="oCV-U0-jGe" id="VEt-iI-HKe"/>
                         <outlet property="startButton" destination="alo-z9-ERD" id="I5Y-5s-a8q"/>
