@@ -17,7 +17,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var increaseButton: UIButton!
-    @IBOutlet weak var decreaseButton: UIButton!
+    @IBOutlet weak var closeButton: UIButton!
     
    
     var object: SCNNode = SCNNode()
@@ -184,13 +184,16 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         
     }
     
-    @IBAction func increaseButtonClicked(_ sender: Any) {
+    @IBAction func increaseButtonClicked(_ sender: Any) {let action = SCNAction.rotateBy(x: 0, y: CGFloat(2 * Double.pi), z: 0, duration: 10)
+        let repAction = SCNAction.repeatForever(action)
+        object.runAction(repAction, forKey: "rotate")
+        
     }
     
-    
-    
-    @IBAction func decreaseButtonClicked(_ sender: Any) {
+    @IBAction func closeButtonClicked(_ sender: Any) {
+       object.removeAction(forKey: "rotate")
     }
+    
     
 }
 

@@ -43,34 +43,42 @@
                                     <action selector="removeButtonClicked:" destination="CH4-bG-lEF" eventType="touchUpInside" id="clU-mm-zN3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybq-Cy-0xl">
-                                <rect key="frame" x="307" y="631" width="65" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Decrease">
-                                    <color key="titleColor" red="0.9262160264" green="0.28821569279999998" blue="0.93710267540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <action selector="decreaseButtonClicked:" destination="CH4-bG-lEF" eventType="touchUpInside" id="D34-IP-6CK"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Dc-KE-hne">
-                                <rect key="frame" x="4" y="631" width="59" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Increase">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Dc-KE-hne">
+                                <rect key="frame" x="0.0" y="607" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2Dc-KE-hne" secondAttribute="height" multiplier="1:1" id="QcZ-hx-hX4"/>
+                                    <constraint firstAttribute="height" constant="60" id="lCv-Aj-Efg"/>
+                                </constraints>
+                                <state key="normal" image="rotateImage">
                                     <color key="titleColor" red="0.92621602643346279" green="0.28821569283933973" blue="0.93710267543792725" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
                                     <action selector="increaseButtonClicked:" destination="CH4-bG-lEF" eventType="touchUpInside" id="sGr-QD-pi5"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uu-Eu-S4c">
+                                <rect key="frame" x="315" y="607" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="7uu-Eu-S4c" secondAttribute="height" multiplier="1:1" id="RxO-S9-TIC"/>
+                                    <constraint firstAttribute="height" constant="60" id="xJc-g6-L7v"/>
+                                </constraints>
+                                <state key="normal" image="stopImage"/>
+                                <connections>
+                                    <action selector="closeButtonClicked:" destination="CH4-bG-lEF" eventType="touchUpInside" id="eOn-y0-yvC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0tx-Ic-A8k" firstAttribute="trailing" secondItem="oCV-U0-jGe" secondAttribute="trailing" id="2jW-RL-T5y"/>
+                            <constraint firstItem="7uu-Eu-S4c" firstAttribute="bottom" secondItem="0tx-Ic-A8k" secondAttribute="bottom" id="85z-n0-1Cu"/>
+                            <constraint firstItem="2Dc-KE-hne" firstAttribute="leading" secondItem="0tx-Ic-A8k" secondAttribute="leading" id="8Vj-p1-Tby"/>
                             <constraint firstItem="X2R-FO-BlB" firstAttribute="leading" secondItem="0tx-Ic-A8k" secondAttribute="leading" constant="16" id="BPO-6L-OYg"/>
                             <constraint firstItem="axb-zW-h4F" firstAttribute="top" secondItem="0tx-Ic-A8k" secondAttribute="top" constant="23" id="BqI-Le-JS1"/>
                             <constraint firstItem="alo-z9-ERD" firstAttribute="top" secondItem="0tx-Ic-A8k" secondAttribute="top" id="Cni-HB-Lzc"/>
                             <constraint firstItem="0tx-Ic-A8k" firstAttribute="bottom" secondItem="oCV-U0-jGe" secondAttribute="bottom" id="HQ6-bJ-bbb"/>
+                            <constraint firstItem="2Dc-KE-hne" firstAttribute="bottom" secondItem="0tx-Ic-A8k" secondAttribute="bottom" id="M80-Vo-IBa"/>
+                            <constraint firstItem="7uu-Eu-S4c" firstAttribute="trailing" secondItem="0tx-Ic-A8k" secondAttribute="trailing" id="Mlh-NI-dn9"/>
                             <constraint firstItem="X2R-FO-BlB" firstAttribute="top" secondItem="0tx-Ic-A8k" secondAttribute="top" constant="28" id="ZDy-pR-CXp"/>
                             <constraint firstItem="alo-z9-ERD" firstAttribute="leading" secondItem="X2R-FO-BlB" secondAttribute="leading" id="a0s-DP-sTr"/>
                             <constraint firstItem="oCV-U0-jGe" firstAttribute="top" secondItem="TbV-zv-DL4" secondAttribute="top" id="g7e-ux-5PV"/>
@@ -83,7 +91,7 @@
                         <viewLayoutGuide key="safeArea" id="0tx-Ic-A8k"/>
                     </view>
                     <connections>
-                        <outlet property="decreaseButton" destination="ybq-Cy-0xl" id="XTg-89-QP3"/>
+                        <outlet property="closeButton" destination="7uu-Eu-S4c" id="NfP-BF-WLL"/>
                         <outlet property="increaseButton" destination="2Dc-KE-hne" id="1Cg-xe-8lS"/>
                         <outlet property="infoLabel" destination="X2R-FO-BlB" id="Ub3-GG-wKT"/>
                         <outlet property="removeButton" destination="axb-zW-h4F" id="5xF-1A-C1K"/>
@@ -96,4 +104,8 @@
             <point key="canvasLocation" x="261.60000000000002" y="-119.1904047976012"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="rotateImage" width="512" height="512"/>
+        <image name="stopImage" width="640" height="640"/>
+    </resources>
 </document>
