@@ -64,6 +64,20 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     }
    
     
+    func addCircle() -> SCNNode {
+        // create object
+        let torus = SCNTorus(ringRadius: 0.08, pipeRadius: 0.001)
+        // create material & add this to an array of SCN object
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.white
+        torus.materials = [material]
+        //create node
+        let scenenode = SCNNode()
+        // add object to the geometry of node ,node has properties like geometry,position etc.
+        scenenode.geometry = torus
+       return scenenode
+    }
+    
     
     
     @objc func addCubeToSceneView(withGestureRecognizer recognizer: UIGestureRecognizer) {
@@ -219,6 +233,7 @@ extension ViewController: ARSCNViewDelegate {
         
         if self.flag == false  {
             let cube:SCNNode = addCube()
+            cube.addChildNode(addCircle())
             cube.position = SCNVector3(x,y,z)
             cube.eulerAngles.x = -.pi / 2
             node.addChildNode(cube)
