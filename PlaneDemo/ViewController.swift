@@ -16,7 +16,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var startButton: UIButton!
-    
+    @IBOutlet weak var increaseButton: UIButton!
+    @IBOutlet weak var decreaseButton: UIButton!
     
    
     var object: SCNNode = SCNNode()
@@ -64,19 +65,6 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     }
    
     
-    func addCircle() -> SCNNode {
-        // create object
-        let torus = SCNTorus(ringRadius: 0.08, pipeRadius: 0.001)
-        // create material & add this to an array of SCN object
-        let material = SCNMaterial()
-        material.diffuse.contents = UIColor.white
-        torus.materials = [material]
-        //create node
-        let scenenode = SCNNode()
-        // add object to the geometry of node ,node has properties like geometry,position etc.
-        scenenode.geometry = torus
-       return scenenode
-    }
     
     
     
@@ -111,8 +99,6 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
      
     }
     
-    
-   
     
     func addCube() -> SCNNode {
         let colors = [UIColor.green, // front
@@ -198,9 +184,14 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         
     }
     
-   
+    @IBAction func increaseButtonClicked(_ sender: Any) {
+    }
     
-  
+    
+    
+    @IBAction func decreaseButtonClicked(_ sender: Any) {
+    }
+    
 }
 
 
@@ -233,7 +224,6 @@ extension ViewController: ARSCNViewDelegate {
         
         if self.flag == false  {
             let cube:SCNNode = addCube()
-            cube.addChildNode(addCircle())
             cube.position = SCNVector3(x,y,z)
             cube.eulerAngles.x = -.pi / 2
             node.addChildNode(cube)
@@ -248,9 +238,6 @@ extension ViewController: ARSCNViewDelegate {
             self.removeButton.isEnabled = true
             self.infoLabel.text = "Tap to resposition the cube"
         }
-       
-   
-        
         
     }
     

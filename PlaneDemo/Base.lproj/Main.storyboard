@@ -43,6 +43,26 @@
                                     <action selector="removeButtonClicked:" destination="CH4-bG-lEF" eventType="touchUpInside" id="clU-mm-zN3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybq-Cy-0xl">
+                                <rect key="frame" x="307" y="631" width="65" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Decrease">
+                                    <color key="titleColor" red="0.9262160264" green="0.28821569279999998" blue="0.93710267540000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="decreaseButtonClicked:" destination="CH4-bG-lEF" eventType="touchUpInside" id="D34-IP-6CK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Dc-KE-hne">
+                                <rect key="frame" x="4" y="631" width="59" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Increase">
+                                    <color key="titleColor" red="0.92621602643346279" green="0.28821569283933973" blue="0.93710267543792725" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="increaseButtonClicked:" destination="CH4-bG-lEF" eventType="touchUpInside" id="sGr-QD-pi5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -63,6 +83,8 @@
                         <viewLayoutGuide key="safeArea" id="0tx-Ic-A8k"/>
                     </view>
                     <connections>
+                        <outlet property="decreaseButton" destination="ybq-Cy-0xl" id="XTg-89-QP3"/>
+                        <outlet property="increaseButton" destination="2Dc-KE-hne" id="1Cg-xe-8lS"/>
                         <outlet property="infoLabel" destination="X2R-FO-BlB" id="Ub3-GG-wKT"/>
                         <outlet property="removeButton" destination="axb-zW-h4F" id="5xF-1A-C1K"/>
                         <outlet property="sceneView" destination="oCV-U0-jGe" id="VEt-iI-HKe"/>
