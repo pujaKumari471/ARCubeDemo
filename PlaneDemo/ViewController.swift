@@ -34,6 +34,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         self.startButton.isHidden = true
         self.startButton.isEnabled = false
         self.infoLabel.isHidden = false
+        self.object = addCube()
         addTapGestureToSceneView()
         addPinchGestureToSceneView()
         addPanGestureToSceneView()
@@ -90,9 +91,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
             let x = translation.x
             let y = translation.y
             let z = translation.z
-            let cube:SCNNode = addCube()
-            cube.position = SCNVector3(x,y,z)
-            sceneView.scene.rootNode.addChildNode(cube)
+            object.position = SCNVector3(x,y,z)
+            sceneView.scene.rootNode.addChildNode(object)
         default:
             break
         }
@@ -226,10 +226,9 @@ extension ViewController: ARSCNViewDelegate {
         let z = CGFloat(planeAnchor.center.z)
         
         if self.flag == false  {
-            let cube:SCNNode = addCube()
-            cube.position = SCNVector3(x,y,z)
-            cube.eulerAngles.x = -.pi / 2
-            node.addChildNode(cube)
+            object.position = SCNVector3(x,y,z)
+            object.eulerAngles.x = -.pi / 2
+            node.addChildNode(object)
             DispatchQueue.main.async {
                 self.infoLabel.text = "Cube Added Successfully"
             }
