@@ -43,11 +43,11 @@
                                     <action selector="removeButtonClicked:" destination="CH4-bG-lEF" eventType="touchUpInside" id="clU-mm-zN3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Dc-KE-hne">
-                                <rect key="frame" x="0.0" y="607" width="60" height="60"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Dc-KE-hne">
+                                <rect key="frame" x="0.0" y="627" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2Dc-KE-hne" secondAttribute="height" multiplier="1:1" id="QcZ-hx-hX4"/>
-                                    <constraint firstAttribute="height" constant="60" id="lCv-Aj-Efg"/>
+                                    <constraint firstAttribute="height" constant="40" id="lCv-Aj-Efg"/>
                                 </constraints>
                                 <state key="normal" image="rotateImage">
                                     <color key="titleColor" red="0.92621602643346279" green="0.28821569283933973" blue="0.93710267543792725" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -57,10 +57,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uu-Eu-S4c">
-                                <rect key="frame" x="315" y="607" width="60" height="60"/>
+                                <rect key="frame" x="335" y="627" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="7uu-Eu-S4c" secondAttribute="height" multiplier="1:1" id="RxO-S9-TIC"/>
-                                    <constraint firstAttribute="height" constant="60" id="xJc-g6-L7v"/>
+                                    <constraint firstAttribute="height" constant="40" id="xJc-g6-L7v"/>
                                 </constraints>
                                 <state key="normal" image="stopImage"/>
                                 <connections>
@@ -105,7 +105,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="rotateImage" width="512" height="512"/>
+        <image name="rotateImage" width="36.283466339111328" height="36.283466339111328"/>
         <image name="stopImage" width="640" height="640"/>
     </resources>
 </document>

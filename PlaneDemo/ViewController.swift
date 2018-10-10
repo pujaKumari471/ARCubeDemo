@@ -66,9 +66,6 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     }
    
     
-    
-    
-    
     @objc func addCubeToSceneView(withGestureRecognizer recognizer: UIGestureRecognizer) {
         let tapLocation = recognizer.location(in: sceneView)
         switch recognizer.state {
