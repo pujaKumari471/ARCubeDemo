@@ -18,14 +18,13 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     @IBOutlet weak var startButton: UIButton!
     
     
-    
+   
     var object: SCNNode = SCNNode()
     var currentAngleY: Float = 0.0
     var currentAngleX: Float = 0.0
     var flag:Bool = false
-    var lightNodes = [SCNNode]()
-    var zoomFactor: Float = 1.0
-
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,23 +64,41 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     }
    
     
+    
+    
     @objc func addCubeToSceneView(withGestureRecognizer recognizer: UIGestureRecognizer) {
         let tapLocation = recognizer.location(in: sceneView)
-        let hitTestResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
-        
-        guard let hitTestResult = hitTestResults.first else { return }
-        let translation = hitTestResult.worldTransform.translation
-        let x = translation.x
-        let y = translation.y
-        let z = translation.z
-        
-        let cube:SCNNode = addCube()
-        
-        cube.position = SCNVector3(x,y,z)
-        sceneView.scene.rootNode.addChildNode(cube)
+        switch recognizer.state {
+        case .began:
+        print("Object began to move")
+        let hitResults = self.sceneView.hitTest(tapLocation, options: nil)
+        if hitResults.isEmpty { return }
+        let hitResult = hitResults.first
+        if let node = hitResult?.node.parent?.parent?.parent {
+            self.object = node
+            }
+        case .changed:
+            print("Moving object position changed")
+            
+        case .ended:
+            print("Done moving object")
+            let hitTestResults = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
+            guard let hitTestResult = hitTestResults.first else { return }
+            let translation = hitTestResult.worldTransform.translation
+            let x = translation.x
+            let y = translation.y
+            let z = translation.z
+            let cube:SCNNode = addCube()
+            cube.position = SCNVector3(x,y,z)
+            sceneView.scene.rootNode.addChildNode(cube)
+        default:
+            break
+        }
+     
     }
     
     
+   
     
     func addCube() -> SCNNode {
         let colors = [UIColor.green, // front
@@ -160,6 +177,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
             node.removeFromParentNode()
         }
+        self.resetTracking()
         self.flag = false
     }
     @IBAction func startButtonClicked(_ sender: Any) {
@@ -198,8 +216,6 @@ extension ViewController: ARSCNViewDelegate {
         let x = CGFloat(planeAnchor.center.x)
         let y = CGFloat(planeAnchor.center.y)
         let z = CGFloat(planeAnchor.center.z)
-        
-       //addLightNodeTo(node)
         
         if self.flag == false  {
             let cube:SCNNode = addCube()
